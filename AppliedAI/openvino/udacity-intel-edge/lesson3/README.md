@@ -1,5 +1,4 @@
-# assuming you have ssd mobilenet and classroom.mp4 downloaded you can run the
-# code using the following command.
+# assuming you have ssd mobilenet and classroom.mp4 downloaded you can run the code using the following command.
 
 python3 app.py -m public/ssd_mobilenet_v2_coco/ssd_mobilenet_v2_coco_2018_03_29/frozen_inference_graph.xml -o out-modified.h264 -i classroom.mp4
 
