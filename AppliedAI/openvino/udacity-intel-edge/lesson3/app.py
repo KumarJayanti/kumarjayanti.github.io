@@ -50,8 +50,9 @@ def get_args():
 
 # initialize the list of class labels MobileNet SSD was trained to
 # detect, then generate a set of bounding box colors for each class
-# classes for mobilenet, i had to swap car and bird 
-# have to sawp aeroplane and person
+# classes for mobilenet
+# TODO: not sure if these classes are correct.
+# Need to externalize this to a config/mapping file
 CLASSES = ["background", "person", "bicycle", "car", "boat",
         "aeroplane", "bus", "bird", "cat", "chair", "cow", "diningtable",
         "dog", "horse", "motorbike", "bottle", "pottedplant", "sheep",
