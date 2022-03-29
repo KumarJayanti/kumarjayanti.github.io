@@ -126,6 +126,17 @@ public class AlgoQuestion {
                 cumPeopleCount = peopleCount;
                 return;
             }
+            //the cumulative cost in any direction is the cost of moving the people from a previous restaurant
+            //to the current restaurant.
+            //For example if we have P1, P2, R3, P4, R5
+            //The algorithm assigns P1 and P2 to the next Restaurant R3.
+            //P4 is assigned to R5.
+            //Then the  cumulative cost at R5 is the cost of moving P1 and P2 from R3 to R5 plus the
+            //cost of P4 at R5.
+            //A single pass from Left to Right cannot compute the cumulative costs of all Restaurants
+            //against each of the people.  So we perform a second pass in the opposite direction
+            //to complete the cumulative cost computations.
+            //Please see below for how the total cost is computed.
             cumCost = prev.cumCost+ prev.currentCost + Math.abs(r.d - prev.r.d) * prev.cumPeopleCount;
             cumPeopleCount = peopleCount + prev.cumPeopleCount;
         }
@@ -228,6 +239,13 @@ public class AlgoQuestion {
             Restaurant rL = restaurantsListLR.get(i);
             Restaurant rR = restaurantsListRL.get(i);
             int totalCost = 0;
+            //if the restaurant is a corner restaurant we compute the total cost and try to
+            //eliminate duplicate attribution for people who are on either sides of the first
+            //and last restaurants
+            //Otherwise the cost for any Middle restaurant is the cumulative cost from Left to Right
+            //Plus the cumulative cost from Right to Left, Plus the cost of people assigned to the
+            //Restaurant itself.
+            
             if (i==0) {
                 totalCost = rL.currentCost + rR.cumCost + (rR.currentCost - rR.currentCostRight);
             } else if (i==restaurantsListLR.size() -1) {
